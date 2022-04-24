@@ -54,23 +54,7 @@ public class UserSevice implements UserDetailsService {
 
         userRepo.save(user);
 
-        sendMessage(user);
-
         return true;
-    }
-
-    private void sendMessage(User user) {
-        if (!StringUtils.isEmpty(user.getEmail())) {
-            String message = String.format(
-                    "Hello, %s! \n" +
-                            "Welcome to Sweater. Please, visit next link: http://%s/activate/%s",
-                    user.getUsername(),
-                    hostname,
-                    user.getActivationCode()
-            );
-
-            mailSender.send(user.getEmail(), "Activation code", message);
-        }
     }
 
     public boolean activateUser(String code) {
@@ -129,9 +113,6 @@ public class UserSevice implements UserDetailsService {
 
         userRepo.save(user);
 
-        if (isEmailChanged) {
-            sendMessage(user);
-        }
     }
 
     public void subscribe(User currentUser, User user) {
