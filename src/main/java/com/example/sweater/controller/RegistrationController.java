@@ -1,10 +1,8 @@
 package com.example.sweater.controller;
 
 import com.example.sweater.domain.User;
-import com.example.sweater.domain.dto.CaptchaResponseDto;
-import com.example.sweater.service.UserSevice;
+import com.example.sweater.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -13,17 +11,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
 
 import javax.validation.Valid;
-import java.util.Collections;
+
 import java.util.Map;
 
 @Controller
 public class RegistrationController {
 
     @Autowired
-    private UserSevice userSevice;
+    private UserService userSevice;
 
     @GetMapping("/registration")
     public String registration() {

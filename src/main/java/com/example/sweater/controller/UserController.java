@@ -2,7 +2,7 @@ package com.example.sweater.controller;
 
 import com.example.sweater.domain.Role;
 import com.example.sweater.domain.User;
-import com.example.sweater.service.UserSevice;
+import com.example.sweater.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -16,7 +16,7 @@ import java.util.Map;
 @RequestMapping("/user")
 public class UserController {
     @Autowired
-    private UserSevice userSevice;
+    private UserService userSevice;
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping

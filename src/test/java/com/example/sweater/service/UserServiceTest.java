@@ -19,9 +19,9 @@ import java.util.Collections;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserSeviceTest {
+public class UserServiceTest {
     @Autowired
-    private UserSevice userSevice;
+    private UserService userService;
 
     @MockBean
     private UserRepo userRepo;
@@ -38,19 +38,13 @@ public class UserSeviceTest {
 
         user.setEmail("some@mail.ru");
 
-        boolean isUserCreated = userSevice.addUser(user);
+        boolean isUserCreated = userService.addUser(user);
 
         Assert.assertTrue(isUserCreated);
         Assert.assertNotNull(user.getActivationCode());
         Assert.assertTrue(CoreMatchers.is(user.getRoles()).matches(Collections.singleton(Role.USER)));
 
         Mockito.verify(userRepo, Mockito.times(1)).save(user);
-        Mockito.verify(mailSender, Mockito.times(1))
-                .send(
-                        ArgumentMatchers.eq(user.getEmail()),
-                        ArgumentMatchers.anyString(),
-                        ArgumentMatchers.anyString()
-                );
     }
 
     @Test
@@ -63,7 +57,7 @@ public class UserSeviceTest {
                 .when(userRepo)
                 .findByUsername("John");
 
-        boolean isUserCreated = userSevice.addUser(user);
+        boolean isUserCreated = userService.addUser(user);
 
         Assert.assertFalse(isUserCreated);
 
@@ -86,7 +80,7 @@ public class UserSeviceTest {
                 .when(userRepo)
                 .findByActivationCode("activate");
 
-        boolean isUserActivated = userSevice.activateUser("activate");
+        boolean isUserActivated = userService.activateUser("activate");
 
         Assert.assertTrue(isUserActivated);
         Assert.assertNull(user.getActivationCode());
@@ -96,7 +90,7 @@ public class UserSeviceTest {
 
     @Test
     public void activateUserFailTest() {
-        boolean isUserActivated = userSevice.activateUser("activate me");
+        boolean isUserActivated = userService.activateUser("activate me");
 
         Assert.assertFalse(isUserActivated);
 

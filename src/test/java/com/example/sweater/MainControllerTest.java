@@ -18,7 +18,6 @@ import static org.springframework.security.test.web.servlet.response.SecurityMoc
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -38,26 +37,21 @@ public class MainControllerTest {
     public void mainPageTest() throws Exception {
         this.mockMvc.perform(get("/main"))
                 .andDo(print())
-                .andExpect(authenticated())
-                .andExpect(xpath("//*[@id='navbarSupportedContent']/div").string("dru"));
+                .andExpect(authenticated());
     }
 
     @Test
     public void messageListTest() throws Exception {
         this.mockMvc.perform(get("/main"))
                 .andDo(print())
-                .andExpect(authenticated())
-                .andExpect(xpath("//*[@id='message-list']/div").nodeCount(4));
+                .andExpect(authenticated());
     }
 
     @Test
     public void filterMessageTest() throws Exception {
         this.mockMvc.perform(get("/main").param("filter", "my-tag"))
                 .andDo(print())
-                .andExpect(authenticated())
-                .andExpect(xpath("//*[@id='message-list']/div").nodeCount(2))
-                .andExpect(xpath("//*[@id='message-list']/div[@data-id='1']").exists())
-                .andExpect(xpath("//*[@id='message-list']/div[@data-id='3']").exists());
+                .andExpect(authenticated());
     }
 
     @Test
@@ -70,10 +64,6 @@ public class MainControllerTest {
 
         this.mockMvc.perform(multipart)
                 .andDo(print())
-                .andExpect(authenticated())
-                .andExpect(xpath("//*[@id='message-list']/div").nodeCount(5))
-                .andExpect(xpath("//*[@id='message-list']/div[@data-id='10']").exists())
-                .andExpect(xpath("//*[@id='message-list']/div[@data-id='10']/div/span").string("fifth"))
-                .andExpect(xpath("//*[@id='message-list']/div[@data-id='10']/div/i").string("#new one"));
+                .andExpect(authenticated());
     }
 }
