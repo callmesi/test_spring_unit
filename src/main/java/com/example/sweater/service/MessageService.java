@@ -1,17 +1,30 @@
 package com.example.sweater.service;
 
-import com.example.sweater.domain.User;
-import com.example.sweater.domain.dto.MessageDto;
-import com.example.sweater.repos.MessageRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.example.sweater.domain.User;
+import com.example.sweater.domain.dto.MessageDto;
+import com.example.sweater.repos.MessageRepo;
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class MessageService {
-    @Autowired
-    private MessageRepo messageRepo;
+
+    private final MessageRepo messageRepo;
+
+    public List<MessageDto> getAllMessages() {
+        return StreamSupport
+                .stream(messageRepo.findAll().spliterator(), false)
+                .map(message -> new MessageDto(message, 0L, false))
+                .collect(Collectors.toList());
+    }
 
     public Page<MessageDto> messageList(Pageable pageable, String filter, User user) {
         if (filter != null && !filter.isEmpty()) {

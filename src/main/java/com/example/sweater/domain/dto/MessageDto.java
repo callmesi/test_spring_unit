@@ -3,11 +3,16 @@ package com.example.sweater.domain.dto;
 import com.example.sweater.domain.Message;
 import com.example.sweater.domain.User;
 import com.example.sweater.domain.util.MessageHelper;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 public class MessageDto {
     private Long id;
     private String text;
     private String tag;
+    @JsonBackReference
     private User author;
     private String filename;
     private Long likes;

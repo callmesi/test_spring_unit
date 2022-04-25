@@ -29,9 +29,7 @@ public class LoginTest {
     public void contextLoads() throws Exception {
         this.mockMvc.perform(get("/"))
                 .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Hello, guest")))
-                .andExpect(content().string(containsString("Please, login")));
+                .andExpect(status().is3xxRedirection());
     }
 
     @Test
