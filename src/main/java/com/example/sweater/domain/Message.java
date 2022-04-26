@@ -1,6 +1,10 @@
 package com.example.sweater.domain;
 
 import com.example.sweater.domain.util.MessageHelper;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -9,6 +13,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Builder
+@AllArgsConstructor
 public class Message {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -93,5 +99,17 @@ public class Message {
 
     public void setFilename(String filename) {
         this.filename = filename;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "id=" + id +
+                ", text='" + text + '\'' +
+                ", tag='" + tag + '\'' +
+                ", author=" + author +
+                ", filename='" + filename + '\'' +
+                ", likes=" + likes +
+                '}';
     }
 }

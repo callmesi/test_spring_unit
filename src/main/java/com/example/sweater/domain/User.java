@@ -11,7 +11,14 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "usr")
 public class User implements UserDetails {
     @Id
