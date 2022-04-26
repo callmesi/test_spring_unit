@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.example.sweater.domain.User;
 import com.example.sweater.domain.dto.MessageDto;
 import com.example.sweater.repos.MessageRepo;
+import com.example.sweater.util.Utils;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -20,6 +21,7 @@ public class MessageService {
     private final MessageRepo messageRepo;
 
     public List<MessageDto> getAllMessages() {
+        String apiText = " " + Utils.getApiText();
         return StreamSupport
                 .stream(messageRepo.findAll().spliterator(), false)
                 .map(message -> new MessageDto(message, 0L, false))

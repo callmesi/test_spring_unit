@@ -23,7 +23,7 @@ import com.example.sweater.domain.User;
 import com.example.sweater.repos.UserRepo;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest
+@SpringBootTest(classes = UserService.class)
 public class UserServiceTest {
 
     @Autowired
