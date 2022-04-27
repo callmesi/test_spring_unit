@@ -1,0 +1,29 @@
+[
+  {
+    "id": 3,
+    "text": "Я КАМЕНЩИК РАБОТАЮ ТРИ ДНЯ",
+    "tag": "работа",
+    "filename": null,
+    "likes": 0,
+    "meLiked": false,
+    "authorName": "abc"
+  },
+  {
+    "id": 4,
+    "text": "Тестировать лучше с закрытыми глазами",
+    "tag": "тэг",
+    "filename": null,
+    "likes": 0,
+    "meLiked": false,
+    "authorName": "abc"
+  },
+  {
+    "id": 5,
+    "text": "КУПИ КУПИ КУПИ",
+    "tag": "воспоминание",
+    "filename": null,
+    "likes": 0,
+    "meLiked": false,
+    "authorName": "abc"
+  }
+]

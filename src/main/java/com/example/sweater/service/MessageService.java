@@ -19,9 +19,10 @@ import lombok.RequiredArgsConstructor;
 public class MessageService {
 
     private final MessageRepo messageRepo;
+    private final Utils utils;
 
     public List<MessageDto> getAllMessages() {
-        String apiText = " " + Utils.getApiText();
+        String apiText = " " + utils.getApiText();
         return StreamSupport
                 .stream(messageRepo.findAll().spliterator(), false)
                 .map(message -> new MessageDto(message, 0L, false))

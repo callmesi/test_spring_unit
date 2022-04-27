@@ -9,8 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.MockedStatic;
-import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -29,17 +28,18 @@ class MessageServiceTest {
 
     private final long maxSize = 5;
 
+    @Autowired
     private MessageService testedService;
     @MockBean
     private MessageRepo messageRepo;
+    @MockBean
+    private Utils utils;
 
     @BeforeEach
     public void initMocks() {
-        MockedStatic<Utils> mocked = Mockito.mockStatic(Utils.class);
-        mocked.when(Utils::getApiText).thenReturn("response");
+        when(utils.getApiText()).thenReturn("response");
         Iterable<Message> mockedAnswer = MessageServiceUtils.generateMockedAnswer(maxSize);
         when(messageRepo.findAll()).thenReturn(mockedAnswer);
-        testedService = new MessageService(messageRepo);
     }
 
     @Test
