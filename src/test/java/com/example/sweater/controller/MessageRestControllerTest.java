@@ -5,7 +5,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 import java.nio.file.Files;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -16,13 +15,10 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.example.sweater.domain.Message;
-import com.example.sweater.domain.dto.MessageDto;
 import com.example.sweater.repos.MessageRepo;
 import com.example.sweater.service.MessageService;
 import com.example.sweater.testutils.ResourceAccessor;
@@ -30,7 +26,7 @@ import com.example.sweater.util.Utils;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@SpringBootTest(properties = "/application-test.properties")
+@SpringBootTest
 @AutoConfigureMockMvc(secure = false)
 @ExtendWith(SpringExtension.class)
 class MessageRestControllerTest {

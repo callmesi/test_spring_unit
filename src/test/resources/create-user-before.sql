@@ -1,4 +1,6 @@
 delete from user_role;
+delete from message_likes;
+delete from message;
 delete from usr;
 
 insert into usr(id, username, password, active) values
